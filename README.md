@@ -1,2 +1,2 @@
 # inventory
- First Laravel Project with basic CRUD
+ First Laravel Project with CRUD functionality
