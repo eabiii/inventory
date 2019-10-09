@@ -16,9 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+//Route::resource('products', 'ProductsController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'ProductsController@index')->name('dashboard');
 Route::get('/addInventory', 'PagesController@addInventory')->name('addInventory');
 //Route::get('/viewInventory', 'PagesController@viewInventory')->name('viewInventory');
 Route::post('/viewInventory/create', 'ProductsController@create')->name('addInventorytoDB');
+Route::get('/viewInventory/{id}', 'ProductsController@show')->name('viewInventory');
+Route::post('/viewInventory/{id}/edit','ProductsController@update')->name('editInventory');
+Route::post('/viewInventory/{id}/delete','ProductsController@destroy')->name('deleteInventory');

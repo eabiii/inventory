@@ -67,8 +67,11 @@ class ProductsController extends Controller
     public function show($id)
     {
         //
+        
         $product = Product::find($id);
-        return view('products.show')->witn('product', $product);
+        return view('pages.show')->with('product', $product);
+        
+      
     }
 
     /**
@@ -79,8 +82,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+        
 
     /**
      * Update the specified resource in storage.
@@ -89,9 +91,15 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    }
     public function update(Request $request, $id)
     {
         //
+        $product = Product::find($id);
+        $product->quantity = $request->input('quantity');
+        $product->save();
+ 
+        return redirect('/dashboard')->with('success', 'Inventory Updated');
     }
 
     /**
@@ -103,5 +111,8 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+        $product = Product::find($id);
+        $product->delete();
+        return redirect('/dashboard')->with('success', 'Inventory Deleted');
     }
 }
